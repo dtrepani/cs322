@@ -1,0 +1,8 @@
+	"src/ext/fileOne.c:993: warning: unused variable ‘nilOop’",
+	"src/ext/fileOne.c:1193: warning: unused variable ‘soopTable’",
+	"src/ext/fileOne.c:1250: warning: unused variable ‘poopTable’",
+	"src/ext/fileOne.c:1250: warning: unused variable ‘nilOop’",
+	"src/ext/fileTwo.c:382: warning: unused variable ‘nilOop’",
+	"src/ext/fileTwo.c:2390: warning: unused variable ‘soopTable’",
+	"src/ext/fileThree.c:1250: warning: unused variable ‘poopTable’",
+	"src/ext/fileFour.c:382: warning: unused variable ‘nilOop’",
