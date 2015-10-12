@@ -8,11 +8,13 @@
 
 ; NOT DONE
 (define (my-reverse a-list)
-  (if (null? a-list)
-      '()
-      (if (pair? a-list)
-         (cons (cdr a-list) (car a-list))
-         (car a-list))))
+  (if (not (pair? a-list))
+      (car a-list)
+      (list (cdr a-list) (car a-list))))
+;  (cond
+;    ((null? a-list) '())
+;    ((pair? a-list) (cons (cdr a-list) (car a-list)))
+;    (else (car a-list))))
 
 ; NOT DONE
 (define (deep-reverse tree)
