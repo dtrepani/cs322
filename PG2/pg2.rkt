@@ -8,10 +8,10 @@
          (pick (- n 1) (cdr a-list)))))
 
 ; NOT DONE
-(define (my-reverse tree)
-  (if (pair? tree)
-      (append (my-reverse (cdr tree) (car tree)))
-      (list tree)))
+(define (my-reverse a-list)
+  (if (pair? a-list)
+      (list (my-reverse (cdr a-list)) (my-reverse (car a-list)))
+      (append a-list)))
 
 (define (deep-reverse tree)
   0)
