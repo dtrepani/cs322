@@ -1,6 +1,6 @@
 #lang racket
 
-(require rackunit "pg3.rkt")
+(require rackunit "State.rkt" "Dfa.rkt")
 
 ; Test state by using a simple two state machine
 ; ez represents even number of zeros

@@ -1,0 +1,4 @@
+#lang racket
+; Implements code to build a dfa object form a dfa spec.
+
+(define (make-dfa dfa-spec)
