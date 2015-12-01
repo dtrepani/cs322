@@ -1,0 +1,26 @@
+{
+	"class" : {
+		"rhs:follow:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"symbol:rhs:follow:" : "ThierryGoubier 10/17/2014 17:15:44" },
+	"instance" : {
+		"=" : "ThierryGoubier 10/17/2014 17:15:44",
+		"action:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"followers" : "ThierryGoubier 10/17/2014 17:15:44",
+		"followers:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"grammar" : "ThierryGoubier 10/17/2014 17:15:44",
+		"hash" : "ThierryGoubier 10/17/2014 17:15:44",
+		"isAtEnd" : "ThierryGoubier 10/17/2014 17:15:44",
+		"isLR1EqualTo:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"itemSet:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"location" : "ThierryGoubier 10/17/2014 17:15:44",
+		"location:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"mergeWith:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"moveNext" : "ThierryGoubier 10/17/2014 17:15:44",
+		"nextSymbol" : "ThierryGoubier 10/17/2014 17:15:44",
+		"path" : "ThierryGoubier 10/17/2014 17:15:44",
+		"precedence" : "ThierryGoubier 10/17/2014 17:15:44",
+		"printOn:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"rest" : "ThierryGoubier 10/17/2014 17:15:44",
+		"rhs" : "ThierryGoubier 10/17/2014 17:15:44",
+		"rhs:follow:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"symbol" : "ThierryGoubier 10/17/2014 17:15:44" } }

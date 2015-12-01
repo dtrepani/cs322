@@ -1,0 +1,15 @@
+{
+	"category" : "SmaCC-Cucumber",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"background",
+		"feature_elements" ],
+	"name" : "CucFeatureNode",
+	"pools" : [
+		 ],
+	"super" : "CucRootNode",
+	"type" : "normal" }

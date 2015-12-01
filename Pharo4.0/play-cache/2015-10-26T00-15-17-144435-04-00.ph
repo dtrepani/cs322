@@ -1,0 +1,1 @@
+ConfigurationOfOSProcess load.ConfigurationOfCommandShell load.ConfigurationOfGitFileTree load.ConfigurationOfSmaCC load.

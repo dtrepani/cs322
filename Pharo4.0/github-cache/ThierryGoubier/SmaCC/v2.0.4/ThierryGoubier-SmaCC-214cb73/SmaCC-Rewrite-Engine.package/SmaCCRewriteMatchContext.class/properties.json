@@ -1,0 +1,19 @@
+{
+	"category" : "SmaCC-Rewrite-Engine",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		"Continue",
+		"SilentProperties" ],
+	"commentStamp" : "",
+	"instvars" : [
+		"rewriteEngine",
+		"match",
+		"nodes",
+		"strings",
+		"continuation" ],
+	"name" : "SmaCCRewriteMatchContext",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }

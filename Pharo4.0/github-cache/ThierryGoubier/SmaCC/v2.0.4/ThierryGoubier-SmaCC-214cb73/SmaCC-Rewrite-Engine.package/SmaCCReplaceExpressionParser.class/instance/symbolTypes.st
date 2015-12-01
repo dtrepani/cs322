@@ -1,0 +1,3 @@
+generated
+symbolTypes
+	^ #(#SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCCodeReplaceExpression #SmaCCNodeReplaceExpression #SmaCCStringReplaceExpression #SmaCCReplaceExpression #SmaCCCompositeReplaceExpression #SmaCCToken #OrderedCollection #Object #Object #Object #SmaCCToken #SmaCCToken #SmaCCCompositeReplaceExpression #SmaCCToken #OrderedCollection #OrderedCollection #SmaCCToken #SmaCCToken)

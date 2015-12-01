@@ -1,0 +1,17 @@
+{
+	"category" : "SmaCC-Python",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"printToken",
+		"greaterThanGreaterThanToken",
+		"tests",
+		"commaTokens" ],
+	"name" : "PyPrintNode",
+	"pools" : [
+		 ],
+	"super" : "PyRootNode",
+	"type" : "normal" }

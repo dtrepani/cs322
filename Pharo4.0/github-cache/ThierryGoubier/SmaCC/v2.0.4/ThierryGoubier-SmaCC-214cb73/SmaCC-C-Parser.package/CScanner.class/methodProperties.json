@@ -1,0 +1,26 @@
+{
+	"class" : {
+		"initializeKeywordMap" : "ThierryGoubier 10/17/2014 16:56",
+		"needsLineNumbers" : "ThierryGoubier 3/18/2014 13:04:25" },
+	"instance" : {
+		"CONSTANTId" : "ThierryGoubier 3/18/2014 13:04:25",
+		"IDENTIFIER" : "ThierryGoubier 3/18/2014 13:04:25",
+		"IDENTIFIERId" : "ThierryGoubier 3/18/2014 13:04:25",
+		"TypeNameId" : "ThierryGoubier 3/18/2014 13:04:25",
+		"addTypeName:" : "ThierryGoubier 3/18/2014 13:04:25",
+		"emptySymbolTokenId" : "ThierryGoubier 3/18/2014 13:04:25",
+		"errorTokenId" : "ThierryGoubier 3/18/2014 13:04:25",
+		"initialize" : "ThierryGoubier 3/18/2014 13:04:25",
+		"scan1" : "ThierryGoubier 3/18/2014 13:04:25",
+		"scan10" : "ThierryGoubier 3/18/2014 13:04:25",
+		"scan2" : "ThierryGoubier 3/18/2014 13:04:25",
+		"scan3" : "ThierryGoubier 3/18/2014 13:04:25",
+		"scan4" : "ThierryGoubier 3/18/2014 13:04:25",
+		"scan5" : "ThierryGoubier 3/18/2014 13:04:25",
+		"scan6" : "ThierryGoubier 3/18/2014 13:04:25",
+		"scan7" : "ThierryGoubier 3/18/2014 13:04:25",
+		"scan8" : "ThierryGoubier 3/18/2014 13:04:25",
+		"scan9" : "ThierryGoubier 3/18/2014 13:04:25",
+		"scanForToken" : "ThierryGoubier 10/17/2014 16:56",
+		"scanSplit1" : "ThierryGoubier 10/17/2014 16:53",
+		"tokenActions" : "ThierryGoubier 3/18/2014 13:04:25" } }

@@ -1,0 +1,12 @@
+{
+	"class" : {
+		"removeDuplicateNodesIn:" : "ThierryGoubier 10/17/2014 17:15:44" },
+	"instance" : {
+		"copyEdgesWith:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"copyGraph" : "ThierryGoubier 10/17/2014 17:15:44",
+		"copyNodesInto:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"isNode:equivalentTo:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"mergeAllTransitions" : "ThierryGoubier 10/17/2014 17:15:44",
+		"pairsDo:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"removeDuplicateNodesIn:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"removeDuplicates" : "ThierryGoubier 10/17/2014 17:15:44" } }

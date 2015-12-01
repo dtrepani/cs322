@@ -1,0 +1,17 @@
+{
+	"category" : "SmaCC-Tests",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "<historical>",
+	"instvars" : [
+		"currentClasses",
+		"currentPackage",
+		"currentModifiedStatus",
+		"manager" ],
+	"name" : "SmaCCEndToEndTest",
+	"pools" : [
+		 ],
+	"super" : "TestCase",
+	"type" : "normal" }

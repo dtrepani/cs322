@@ -1,0 +1,14 @@
+{
+	"class" : {
+		 },
+	"instance" : {
+		"calculateFirstTerminals" : "ThierryGoubier 10/17/2014 17:15:44",
+		"createIdMethod" : "ThierryGoubier 10/17/2014 17:15:44",
+		"createIdMethod:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"initialize" : "ThierryGoubier 10/17/2014 17:15:44",
+		"isTerminal" : "ThierryGoubier 10/17/2014 17:15:44",
+		"makeCaseInsensitive" : "ThierryGoubier 10/17/2014 17:15:44",
+		"modelTypes:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"regularExpression" : "ThierryGoubier 10/17/2014 17:15:44",
+		"regularExpression:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"unsafeMethodName" : "ThierryGoubier 10/17/2014 17:15:44" } }

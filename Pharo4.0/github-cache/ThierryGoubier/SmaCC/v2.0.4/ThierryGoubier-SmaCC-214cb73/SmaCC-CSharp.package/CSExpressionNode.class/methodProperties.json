@@ -1,0 +1,11 @@
+{
+	"class" : {
+		 },
+	"instance" : {
+		"_leftParens" : "ThierryGoubier 4/19/2014 10:27:56",
+		"_leftParens:" : "ThierryGoubier 4/19/2014 10:27:56",
+		"_rightParens" : "ThierryGoubier 4/19/2014 10:27:56",
+		"_rightParens:" : "ThierryGoubier 4/19/2014 10:27:56",
+		"acceptVisitor:" : "ThierryGoubier 4/19/2014 10:27:56",
+		"ignoredCompositeTokenVariables" : "ThierryGoubier 4/19/2014 10:27:56",
+		"initialize" : "ThierryGoubier 4/19/2014 10:27:56" } }

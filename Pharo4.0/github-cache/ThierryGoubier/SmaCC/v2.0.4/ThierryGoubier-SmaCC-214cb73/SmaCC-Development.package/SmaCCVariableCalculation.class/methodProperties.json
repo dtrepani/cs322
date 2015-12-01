@@ -1,0 +1,23 @@
+{
+	"class" : {
+		"calculateVariablesForGrammar:" : "ThierryGoubier 10/17/2014 17:15:44" },
+	"instance" : {
+		"addDependent:to:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"addExternallyDefinedVariablesFrom:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"addLocallyDefinedVariable:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"addRHS:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"addVariableNamed:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"assignVariables" : "ThierryGoubier 10/17/2014 17:15:44",
+		"calculateNewVariables" : "ThierryGoubier 10/17/2014 17:15:44",
+		"calculateVariables" : "ThierryGoubier 10/17/2014 17:15:44",
+		"calculateVariablesFor:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"calculateVariablesForGrammar:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"hasVariableChanges" : "ThierryGoubier 10/17/2014 17:15:44",
+		"hasVariableNamed:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"processUnnamedSymbol:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"recalculateDependents" : "ThierryGoubier 10/17/2014 17:15:44",
+		"rhsDo:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"setupVariableDependents" : "ThierryGoubier 10/17/2014 17:15:44",
+		"setupVariableDependentsFor:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"shouldAddVariablesFrom:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"variableNamed:" : "ThierryGoubier 10/17/2014 17:15:44" } }

@@ -1,0 +1,1 @@
+MiniVoidScope default

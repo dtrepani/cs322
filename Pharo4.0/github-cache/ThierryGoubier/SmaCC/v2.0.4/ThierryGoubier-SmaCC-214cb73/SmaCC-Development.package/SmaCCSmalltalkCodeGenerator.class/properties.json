@@ -1,0 +1,17 @@
+{
+	"category" : "SmaCC-Development",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "<historical>",
+	"instvars" : [
+		"isExpressions",
+		"parseTreeCache",
+		"category",
+		"splitIndex" ],
+	"name" : "SmaCCSmalltalkCodeGenerator",
+	"pools" : [
+		 ],
+	"super" : "SmaCCCodeGenerator",
+	"type" : "normal" }

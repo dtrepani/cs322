@@ -1,0 +1,23 @@
+{
+	"class" : {
+		"generateCharacterSetFor:" : "ThierryGoubier 10/17/2014 17:15:44" },
+	"instance" : {
+		"<=" : "ThierryGoubier 10/17/2014 17:15:44",
+		"dispatchTo:seen:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"edgeFrequencyUsingTable:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"edgeLabel" : "ThierryGoubier 10/17/2014 17:15:44",
+		"expression" : "ThierryGoubier 10/17/2014 17:15:44",
+		"isCharacterTransition" : "ThierryGoubier 10/17/2014 17:15:44",
+		"mergeWith:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"minMaxPairsWithout:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"outputClosestIsMethodOn:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"outputExpressionFor:on:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"outputExpressionOn:without:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"outputInvertedMatchOn:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"outputMatchGreaterThan:on:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"outputMatchLessThan:on:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"outputMatchRange:on:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"outputMatchSingleCharacter:on:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"remove:" : "ThierryGoubier 10/17/2014 17:15:44",
+		"setClass" : "ThierryGoubier 10/17/2014 17:15:44",
+		"to:on:" : "ThierryGoubier 10/17/2014 17:15:44" } }
