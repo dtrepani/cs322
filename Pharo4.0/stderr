@@ -1,0 +1,429 @@
+[31mTestFailure: Assertion failed
+[0mMiniCTranslatorTestCase(TestAsserter)>>assert:
+MiniCTranslatorTestCase>>testAssignmentNode
+MiniCTranslatorTestCase(TestCase)>>performTest
+[ 
+self setUp.
+self performTest ] in MiniCTranslatorTestCase(TestCase)>>runCase in Block: [ ...
+BlockClosure>>ensure:
+MiniCTranslatorTestCase(TestCase)>>runCase
+[ (self class selector: testSelector) runCase ] in MiniCTranslatorTestCase(TestCase)>>debug in Block: [ (self class selector: testSelector) runCase ]
+BlockClosure>>ensure:
+MiniCTranslatorTestCase(TestCase)>>debug
+[ :each | 
+each debug.
+self announceTest: each.
+self changed: each ] in [ 
+self tests
+	do: [ :each | 
+		each debug.
+		self announceTest: each.
+		self changed: each ] ] in TestSuite>>debug in Block: [ :each | ...
+OrderedCollection>>do:
+[ 
+self tests
+	do: [ :each | 
+		each debug.
+		self announceTest: each.
+		self changed: each ] ] in TestSuite>>debug in Block: [ ...
+BlockClosure>>ensure:
+TestSuite>>debug
+[ :aSuite | aSuite debug ] in TestRunner>>debugSuite: in Block: [ :aSuite | aSuite debug ]
+BlockClosure>>cull:
+BlockClosure>>cull:cull:
+[ aBlock cull: aTestSuite cull: result ] in TestRunner>>executeSuite:as: in Block: [ aBlock cull: aTestSuite cull: result ]
+BlockClosure>>ensure:
+TestRunner>>executeSuite:as:
+TestRunner>>debugSuite:
+TestRunner>>debug:
+TestRunner>>failedSelected:
+PluggableListMorph>>changeModelSelection:
+PluggableListMorph>>mouseUpOnSingle:
+PluggableListMorph>>mouseUp:
+PluggableListMorph(Morph)>>handleMouseUp:
+MouseButtonEvent>>sentTo:
+PluggableListMorph(Morph)>>handleEvent:
+MorphicEventDispatcher>>dispatchDefault:with:
+[0m[31mTestFailure: Assertion failed
+[0mMiniCTranslatorTestCase(TestAsserter)>>assert:
+MiniCTranslatorTestCase>>testVariableDeclarationNode
+MiniCTranslatorTestCase(TestCase)>>performTest
+[ 
+self setUp.
+self performTest ] in MiniCTranslatorTestCase(TestCase)>>runCase in Block: [ ...
+BlockClosure>>ensure:
+MiniCTranslatorTestCase(TestCase)>>runCase
+[ (self class selector: testSelector) runCase ] in MiniCTranslatorTestCase(TestCase)>>debug in Block: [ (self class selector: testSelector) runCase ]
+BlockClosure>>ensure:
+MiniCTranslatorTestCase(TestCase)>>debug
+[ :each | 
+each debug.
+self announceTest: each.
+self changed: each ] in [ 
+self tests
+	do: [ :each | 
+		each debug.
+		self announceTest: each.
+		self changed: each ] ] in TestSuite>>debug in Block: [ :each | ...
+OrderedCollection>>do:
+[ 
+self tests
+	do: [ :each | 
+		each debug.
+		self announceTest: each.
+		self changed: each ] ] in TestSuite>>debug in Block: [ ...
+BlockClosure>>ensure:
+TestSuite>>debug
+[ :aSuite | aSuite debug ] in TestRunner>>debugSuite: in Block: [ :aSuite | aSuite debug ]
+BlockClosure>>cull:
+BlockClosure>>cull:cull:
+[ aBlock cull: aTestSuite cull: result ] in TestRunner>>executeSuite:as: in Block: [ aBlock cull: aTestSuite cull: result ]
+BlockClosure>>ensure:
+TestRunner>>executeSuite:as:
+TestRunner>>debugSuite:
+TestRunner>>debug:
+TestRunner>>failedSelected:
+PluggableListMorph>>changeModelSelection:
+PluggableListMorph>>mouseUpOnSingle:
+PluggableListMorph>>mouseUp:
+PluggableListMorph(Morph)>>handleMouseUp:
+MouseButtonEvent>>sentTo:
+PluggableListMorph(Morph)>>handleEvent:
+MorphicEventDispatcher>>dispatchDefault:with:
+[0m[31mTestFailure: Assertion failed
+[0mMiniCTranslatorTestCase(TestAsserter)>>assert:
+MiniCTranslatorTestCase>>testVariableDeclarationNode
+MiniCTranslatorTestCase(TestCase)>>performTest
+[ 
+self setUp.
+self performTest ] in MiniCTranslatorTestCase(TestCase)>>runCase in Block: [ ...
+BlockClosure>>ensure:
+MiniCTranslatorTestCase(TestCase)>>runCase
+[ (self class selector: testSelector) runCase ] in MiniCTranslatorTestCase(TestCase)>>debug in Block: [ (self class selector: testSelector) runCase ]
+BlockClosure>>ensure:
+MiniCTranslatorTestCase(TestCase)>>debug
+[ :each | 
+each debug.
+self announceTest: each.
+self changed: each ] in [ 
+self tests
+	do: [ :each | 
+		each debug.
+		self announceTest: each.
+		self changed: each ] ] in TestSuite>>debug in Block: [ :each | ...
+OrderedCollection>>do:
+[ 
+self tests
+	do: [ :each | 
+		each debug.
+		self announceTest: each.
+		self changed: each ] ] in TestSuite>>debug in Block: [ ...
+BlockClosure>>ensure:
+TestSuite>>debug
+[ :aSuite | aSuite debug ] in TestRunner>>debugSuite: in Block: [ :aSuite | aSuite debug ]
+BlockClosure>>cull:
+BlockClosure>>cull:cull:
+[ aBlock cull: aTestSuite cull: result ] in TestRunner>>executeSuite:as: in Block: [ aBlock cull: aTestSuite cull: result ]
+BlockClosure>>ensure:
+TestRunner>>executeSuite:as:
+TestRunner>>debugSuite:
+TestRunner>>debug:
+TestRunner>>failedSelected:
+PluggableListMorph>>changeModelSelection:
+PluggableListMorph>>mouseUpOnSingle:
+PluggableListMorph>>mouseUp:
+PluggableListMorph(Morph)>>handleMouseUp:
+MouseButtonEvent>>sentTo:
+PluggableListMorph(Morph)>>handleEvent:
+MorphicEventDispatcher>>dispatchDefault:with:
+[0m[31mError: Attempt to set the position of a PositionableStream out of bounds
+[0mWriteStream(Object)>>error:
+WriteStream(PositionableStream)>>positionError
+WriteStream(PositionableStream)>>position:
+WriteStream>>position:
+WriteStream(PositionableStream)>>skip:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mHalt
+[0mMiniCTranslator>>visitMiniVariableDeclarationNode:
+MiniVariableDeclarationNode>>accept:
+[ :each | 
+each accept: self.
+self stream nextPut: $;.
+self stream cr ] in MiniCTranslator>>visitMiniVariableSectionNode: in Block: [ :each | ...
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniVariableSectionNode:
+MiniVariableSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mHalt
+[0mMiniCTranslator>>visitMiniFunctionHeadingNode:
+MiniFunctionHeadingNode>>accept:
+MiniCTranslator>>visitMiniFunctionNode:
+MiniFunctionNode>>accept:
+[ :each | each accept: self ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | each accept: self ]
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mHalt
+[0mMiniCTranslator>>visitMiniFunctionNode:
+MiniFunctionNode>>accept:
+[ :each | each accept: self ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | each accept: self ]
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mTestFailure: Assertion failed
+[0mMiniCTranslatorTestCase(TestAsserter)>>assert:
+MiniCTranslatorTestCase>>testVariableDeclarationNode
+MiniCTranslatorTestCase(TestCase)>>performTest
+[ 
+self setUp.
+self performTest ] in MiniCTranslatorTestCase(TestCase)>>runCase in Block: [ ...
+BlockClosure>>ensure:
+MiniCTranslatorTestCase(TestCase)>>runCase
+[ (self class selector: testSelector) runCase ] in MiniCTranslatorTestCase(TestCase)>>debug in Block: [ (self class selector: testSelector) runCase ]
+BlockClosure>>ensure:
+MiniCTranslatorTestCase(TestCase)>>debug
+[ :each | 
+each debug.
+self announceTest: each.
+self changed: each ] in [ 
+self tests
+	do: [ :each | 
+		each debug.
+		self announceTest: each.
+		self changed: each ] ] in TestSuite>>debug in Block: [ :each | ...
+OrderedCollection>>do:
+[ 
+self tests
+	do: [ :each | 
+		each debug.
+		self announceTest: each.
+		self changed: each ] ] in TestSuite>>debug in Block: [ ...
+BlockClosure>>ensure:
+TestSuite>>debug
+[ :aSuite | aSuite debug ] in TestRunner>>debugSuite: in Block: [ :aSuite | aSuite debug ]
+BlockClosure>>cull:
+BlockClosure>>cull:cull:
+[ aBlock cull: aTestSuite cull: result ] in TestRunner>>executeSuite:as: in Block: [ aBlock cull: aTestSuite cull: result ]
+BlockClosure>>ensure:
+TestRunner>>executeSuite:as:
+TestRunner>>debugSuite:
+TestRunner>>debug:
+TestRunner>>failedSelected:
+PluggableListMorph>>changeModelSelection:
+PluggableListMorph>>mouseUpOnSingle:
+PluggableListMorph>>mouseUp:
+PluggableListMorph(Morph)>>handleMouseUp:
+MouseButtonEvent>>sentTo:
+PluggableListMorph(Morph)>>handleEvent:
+MorphicEventDispatcher>>dispatchDefault:with:
+[0m[31mHalt
+[0mMiniCTranslator>>visitMiniIfElseNode:
+MiniIfElseNode>>accept:
+MiniCTranslator>>visitMiniFunctionNode:
+MiniFunctionNode>>accept:
+[ :each | each accept: self ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | each accept: self ]
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mHalt
+[0mMiniCTranslator>>visitMiniIfElseNode:
+MiniIfElseNode>>accept:
+MiniCTranslator>>visitMiniFunctionNode:
+MiniFunctionNode>>accept:
+[ :each | each accept: self ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | each accept: self ]
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m
