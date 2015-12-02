@@ -1,15 +1,16 @@
-[31mTestFailure: Assertion failed
-[0mMiniCTranslatorTestCase(TestAsserter)>>assert:
-MiniCTranslatorTestCase>>testAssignmentNode
-MiniCTranslatorTestCase(TestCase)>>performTest
+[31mMessageNotUnderstood: MiniInterpreter>>visitMiniFunctionCallNode:
+[0mMiniInterpreter(Object)>>doesNotUnderstand: #visitMiniFunctionCallNode:
+MiniFunctionCallNode>>accept:
+MiniInterpreterTestCase>>testFunctionCall
+MiniInterpreterTestCase(TestCase)>>performTest
 [ 
 self setUp.
-self performTest ] in MiniCTranslatorTestCase(TestCase)>>runCase in Block: [ ...
+self performTest ] in MiniInterpreterTestCase(TestCase)>>runCase in Block: [ ...
 BlockClosure>>ensure:
-MiniCTranslatorTestCase(TestCase)>>runCase
-[ (self class selector: testSelector) runCase ] in MiniCTranslatorTestCase(TestCase)>>debug in Block: [ (self class selector: testSelector) runCase ]
+MiniInterpreterTestCase(TestCase)>>runCase
+[ (self class selector: testSelector) runCase ] in MiniInterpreterTestCase(TestCase)>>debug in Block: [ (self class selector: testSelector) runCase ]
 BlockClosure>>ensure:
-MiniCTranslatorTestCase(TestCase)>>debug
+MiniInterpreterTestCase(TestCase)>>debug
 [ :each | 
 each debug.
 self announceTest: each.
@@ -36,114 +37,173 @@ BlockClosure>>ensure:
 TestRunner>>executeSuite:as:
 TestRunner>>debugSuite:
 TestRunner>>debug:
-TestRunner>>failedSelected:
+TestRunner>>errorSelected:
 PluggableListMorph>>changeModelSelection:
 PluggableListMorph>>mouseUpOnSingle:
 PluggableListMorph>>mouseUp:
 PluggableListMorph(Morph)>>handleMouseUp:
 MouseButtonEvent>>sentTo:
 PluggableListMorph(Morph)>>handleEvent:
-MorphicEventDispatcher>>dispatchDefault:with:
-[0m[31mTestFailure: Assertion failed
-[0mMiniCTranslatorTestCase(TestAsserter)>>assert:
-MiniCTranslatorTestCase>>testVariableDeclarationNode
-MiniCTranslatorTestCase(TestCase)>>performTest
+[0m[31mHalt
+[0mMiniInterpreter>>visitMiniFunctionCallNode:
+MiniFunctionCallNode>>accept:
+MiniInterpreterTestCase>>testFunctionCall
+MiniInterpreterTestCase(TestCase)>>performTest
 [ 
 self setUp.
-self performTest ] in MiniCTranslatorTestCase(TestCase)>>runCase in Block: [ ...
+self performTest ] in MiniInterpreterTestCase(TestCase)>>runCase in Block: [ ...
 BlockClosure>>ensure:
-MiniCTranslatorTestCase(TestCase)>>runCase
-[ (self class selector: testSelector) runCase ] in MiniCTranslatorTestCase(TestCase)>>debug in Block: [ (self class selector: testSelector) runCase ]
-BlockClosure>>ensure:
-MiniCTranslatorTestCase(TestCase)>>debug
+MiniInterpreterTestCase(TestCase)>>runCase
+[ 
+aTestCase announce: TestCaseStarted withResult: self.
+aTestCase runCase.
+aTestCase announce: TestCaseEnded withResult: self.
+self addPass: aTestCase ] in TestResult>>runCase: in Block: [ ...
+BlockClosure>>on:do:
+TestResult>>runCase:
+MiniInterpreterTestCase(TestCase)>>run:
 [ :each | 
-each debug.
+each run: aResult.
 self announceTest: each.
 self changed: each ] in [ 
 self tests
 	do: [ :each | 
-		each debug.
+		each run: aResult.
 		self announceTest: each.
-		self changed: each ] ] in TestSuite>>debug in Block: [ :each | ...
+		self changed: each ] ] in TestSuite>>run: in Block: [ :each | ...
 OrderedCollection>>do:
 [ 
 self tests
 	do: [ :each | 
-		each debug.
+		each run: aResult.
 		self announceTest: each.
-		self changed: each ] ] in TestSuite>>debug in Block: [ ...
+		self changed: each ] ] in TestSuite>>run: in Block: [ ...
 BlockClosure>>ensure:
-TestSuite>>debug
-[ :aSuite | aSuite debug ] in TestRunner>>debugSuite: in Block: [ :aSuite | aSuite debug ]
-BlockClosure>>cull:
+TestSuite>>run:
+[ :aSuite :aResult | aSuite run: aResult ] in TestRunner>>runSuite: in Block: [ :aSuite :aResult | aSuite run: aResult ]
 BlockClosure>>cull:cull:
 [ aBlock cull: aTestSuite cull: result ] in TestRunner>>executeSuite:as: in Block: [ aBlock cull: aTestSuite cull: result ]
 BlockClosure>>ensure:
 TestRunner>>executeSuite:as:
-TestRunner>>debugSuite:
-TestRunner>>debug:
-TestRunner>>failedSelected:
-PluggableListMorph>>changeModelSelection:
-PluggableListMorph>>mouseUpOnSingle:
-PluggableListMorph>>mouseUp:
-PluggableListMorph(Morph)>>handleMouseUp:
-MouseButtonEvent>>sentTo:
-PluggableListMorph(Morph)>>handleEvent:
-MorphicEventDispatcher>>dispatchDefault:with:
-[0m[31mTestFailure: Assertion failed
-[0mMiniCTranslatorTestCase(TestAsserter)>>assert:
-MiniCTranslatorTestCase>>testVariableDeclarationNode
-MiniCTranslatorTestCase(TestCase)>>performTest
+TestRunner>>runSuite:
+[ :testSuite | self runSuite: testSuite ] in TestRunner>>runTestSuites: in Block: [ :testSuite | self runSuite: testSuite ]
+[ :each | 
+| newLabel |
+"Special handling for first and last element"
+(count = 0 or: [ count + 1 = size or: [ (Time millisecondsSince: lastUpdate) >= msecs ] ])
+	ifTrue: [ 
+		bar current: count.
+		oldLabel = (newLabel := (labelBlock cull: each) ifNil: [ oldLabel ])
+			ifFalse: [ 
+				bar label: newLabel.
+				ProgressNotification signal: '' extra: (oldLabel := newLabel) ].
+		lastUpdate := Time millisecondClockValue ].
+aBlock value: each.
+count := count + 1 ] in [ :bar | 
+labelBlock := aStringOrBlock isString
+	ifTrue: [ 
+		bar label: aStringOrBlock.
+		[ :dummyItem | aStringOrBlock ] ]
+	ifFalse: [ aStringOrBlock ].
+self
+	do: [ :each | 
+		| newLabel |
+		"Special handling for first and last element"
+		(count = 0 or: [ count + 1 = size or: [ (Time millisecondsSince: lastUpdate) >= msecs ] ])
+			ifTrue: [ 
+				bar current: count.
+				oldLabel = (newLabel := (labelBlock cull: each) ifNil: [ oldLabel ])
+					ifFalse: [ 
+						bar label: newLabel.
+						ProgressNotification signal: '' extra: (oldLabel := newLabel) ].
+				lastUpdate := Time millisecondClockValue ].
+		aBlock value: each.
+		count := count + 1 ] ] in Set(Collection)>>do:displayingProgress:every: in Block: [ :each | ...
+Set>>do:
+[ :bar | 
+labelBlock := aStringOrBlock isString
+	ifTrue: [ 
+		bar label: aStringOrBlock.
+		[ :dummyItem | aStringOrBlock ] ]
+	ifFalse: [ aStringOrBlock ].
+self
+	do: [ :each | 
+		| newLabel |
+		"Special handling for first and last element"
+		(count = 0 or: [ count + 1 = size or: [ (Time millisecondsSince: lastUpdate) >= msecs ] ])
+			ifTrue: [ 
+				bar current: count.
+				oldLabel = (newLabel := (labelBlock cull: each) ifNil: [ oldLabel ])
+					ifFalse: [ 
+						bar label: newLabel.
+						ProgressNotification signal: '' extra: (oldLabel := newLabel) ].
+				lastUpdate := Time millisecondClockValue ].
+		aBlock value: each.
+		count := count + 1 ] ] in Set(Collection)>>do:displayingProgress:every: in Block: [ :bar | ...
+BlockClosure>>cull:
+[ result := block cull: self ] in [ 
+self prepareForRunning.
+[ result := block cull: self ]
+	on: JobNotification
+	do: [ :notification | notification handle: self ] ] in Job>>run in Block: [ result := block cull: self ]
+BlockClosure>>on:do:
+[ 
+self prepareForRunning.
+[ result := block cull: self ]
+	on: JobNotification
+	do: [ :notification | notification handle: self ] ] in Job>>run in Block: [ ...
+[0m[31mDebug
+[0mMorphicUIManager>>openDebuggerOn:context:label:contents:fullView:
+SpecDebugger class>>openOn:context:label:contents:fullView:
+SpecDebugger class>>debugError:
+MorphicUIManager>>unhandledErrorDefaultAction:
+Halt>>defaultAction
+UndefinedObject>>handleSignal:
+Context>>handleSignal:
+Context>>handleSignal:
+Context>>handleSignal:
+Halt(Exception)>>signal
+Halt class(Exception class)>>signal
+Halt class>>now
+MiniInterpreter(Object)>>halt
+MiniInterpreter>>visitMiniFunctionCallNode:
+MiniFunctionCallNode>>accept:
+MiniInterpreterTestCase>>testFunctionCall
+MiniInterpreterTestCase(TestCase)>>performTest
 [ 
 self setUp.
-self performTest ] in MiniCTranslatorTestCase(TestCase)>>runCase in Block: [ ...
+self performTest ] in MiniInterpreterTestCase(TestCase)>>runCase in Block: [ ...
 BlockClosure>>ensure:
-MiniCTranslatorTestCase(TestCase)>>runCase
-[ (self class selector: testSelector) runCase ] in MiniCTranslatorTestCase(TestCase)>>debug in Block: [ (self class selector: testSelector) runCase ]
-BlockClosure>>ensure:
-MiniCTranslatorTestCase(TestCase)>>debug
+MiniInterpreterTestCase(TestCase)>>runCase
+[ 
+aTestCase announce: TestCaseStarted withResult: self.
+aTestCase runCase.
+aTestCase announce: TestCaseEnded withResult: self.
+self addPass: aTestCase ] in TestResult>>runCase: in Block: [ ...
+BlockClosure>>on:do:
+TestResult>>runCase:
+MiniInterpreterTestCase(TestCase)>>run:
 [ :each | 
-each debug.
+each run: aResult.
 self announceTest: each.
 self changed: each ] in [ 
 self tests
 	do: [ :each | 
-		each debug.
+		each run: aResult.
 		self announceTest: each.
-		self changed: each ] ] in TestSuite>>debug in Block: [ :each | ...
+		self changed: each ] ] in TestSuite>>run: in Block: [ :each | ...
 OrderedCollection>>do:
 [ 
 self tests
 	do: [ :each | 
-		each debug.
+		each run: aResult.
 		self announceTest: each.
-		self changed: each ] ] in TestSuite>>debug in Block: [ ...
+		self changed: each ] ] in TestSuite>>run: in Block: [ ...
 BlockClosure>>ensure:
-TestSuite>>debug
-[ :aSuite | aSuite debug ] in TestRunner>>debugSuite: in Block: [ :aSuite | aSuite debug ]
-BlockClosure>>cull:
-BlockClosure>>cull:cull:
-[ aBlock cull: aTestSuite cull: result ] in TestRunner>>executeSuite:as: in Block: [ aBlock cull: aTestSuite cull: result ]
-BlockClosure>>ensure:
-TestRunner>>executeSuite:as:
-TestRunner>>debugSuite:
-TestRunner>>debug:
-TestRunner>>failedSelected:
-PluggableListMorph>>changeModelSelection:
-PluggableListMorph>>mouseUpOnSingle:
-PluggableListMorph>>mouseUp:
-PluggableListMorph(Morph)>>handleMouseUp:
-MouseButtonEvent>>sentTo:
-PluggableListMorph(Morph)>>handleEvent:
-MorphicEventDispatcher>>dispatchDefault:with:
-[0m[31mError: Attempt to set the position of a PositionableStream out of bounds
-[0mWriteStream(Object)>>error:
-WriteStream(PositionableStream)>>positionError
-WriteStream(PositionableStream)>>position:
-WriteStream>>position:
-WriteStream(PositionableStream)>>skip:
-MiniCTranslator>>visitMiniProcedureSectionNode:
-MiniProcedureSectionNode>>accept:
+TestSuite>>run:
+[ :aSuite :aResult | aSuite run: aResult ] in TestRunner>>runSuite: in Block: [ :aSuite :aResult | aSuite run: aResult ]
+[0m[31mMessageNotUnderstood: WriteStream>>cr:
+[0mWriteStream(Object)>>doesNotUnderstand: #cr:
 MiniCTranslator>>visitMiniProgramNode:
 MiniProgramNode>>accept:
 MiniProgramNode>>DoIt
@@ -177,15 +237,120 @@ false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
 self value.
 Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
 [0m[31mHalt
-[0mMiniCTranslator>>visitMiniVariableDeclarationNode:
-MiniVariableDeclarationNode>>accept:
+[0mMiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mMessageNotUnderstood: MiniCTranslator>>variables
+[0mMiniCTranslator(Object)>>doesNotUnderstand: #variables
+MiniCTranslator>>printf:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mMessageNotUnderstood: MiniCTranslator>>variables
+[0mMiniCTranslator(Object)>>doesNotUnderstand: #variables
+MiniCTranslator>>printf:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mMessageNotUnderstood: MiniVariableDeclarationNode>>accept
+[0mMiniVariableDeclarationNode(Object)>>doesNotUnderstand: #accept
 [ :each | 
-each accept: self.
-self stream nextPut: $;.
-self stream cr ] in MiniCTranslator>>visitMiniVariableSectionNode: in Block: [ :each | ...
+self stream nextPutAll: 'printf("'.
+each accept name: self.
+self stream nextPutAll: ' == %d\n", '.
+each accept name: self.
+self stream
+	nextPutAll: ');';
+	cr ] in MiniCTranslator>>printf: in Block: [ :each | ...
 OrderedCollection>>do:
-MiniCTranslator>>visitMiniVariableSectionNode:
-MiniVariableSectionNode>>accept:
+MiniCTranslator>>printf:
 MiniCTranslator>>visitMiniProgramNode:
 MiniProgramNode>>accept:
 MiniProgramNode>>DoIt
@@ -223,7 +388,319 @@ Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
 MiniFunctionHeadingNode>>accept:
 MiniCTranslator>>visitMiniFunctionNode:
 MiniFunctionNode>>accept:
-[ :each | each accept: self ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | each accept: self ]
+[ :each | 
+each accept: self.
+self stream cr ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | ...
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mPrimitiveFailed: primitive #basicNew: in ByteString class failed
+[0mByteString class(Object)>>primitiveFailed:
+ByteString class(Object)>>primitiveFailed
+ByteString class(Behavior)>>basicNew:
+ByteString class(String class)>>new:
+WriteStream(PositionableStream)>>next:
+MiniCTranslator>>visitMiniIfElseNode:
+MiniIfElseNode>>accept:
+MiniCTranslator>>visitMiniFunctionNode:
+MiniFunctionNode>>accept:
+[ :each | 
+each accept: self.
+self stream cr ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | ...
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mMessageNotUnderstood: Character>>self
+[0mCharacter(Object)>>doesNotUnderstand: #self
+MiniCTranslator>>visitMiniAssignmentNode:
+MiniAssignmentNode>>accept:
+[ :each | 
+each accept: self.
+self stream crtab: self indentLevel ] in MiniCTranslator>>visitMiniCompoundStatementNode: in Block: [ :each | ...
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniCompoundStatementNode:
+MiniCompoundStatementNode>>accept:
+MiniCTranslator>>printStatements:
+MiniCTranslator>>visitMiniIfElseNode:
+MiniIfElseNode>>accept:
+MiniCTranslator>>visitMiniFunctionNode:
+MiniFunctionNode>>accept:
+[ :each | 
+each accept: self.
+self stream cr ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | ...
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[0m[31mMessageNotUnderstood: Character>>self
+[0mCharacter(Object)>>doesNotUnderstand: #self
+MiniCTranslator>>visitMiniAssignmentNode:
+MiniAssignmentNode>>accept:
+[ :each | 
+each accept: self.
+self stream crtab: self indentLevel ] in MiniCTranslator>>visitMiniCompoundStatementNode: in Block: [ :each | ...
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniCompoundStatementNode:
+MiniCompoundStatementNode>>accept:
+MiniCTranslator>>printStatements:
+MiniCTranslator>>visitMiniIfElseNode:
+MiniIfElseNode>>accept:
+MiniCTranslator>>visitMiniFunctionNode:
+MiniFunctionNode>>accept:
+[ :each | 
+each accept: self.
+self stream cr ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | ...
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[0m[31mMessageNotUnderstood: MiniCTranslator>>visitMiniASTNode:
+[0mMiniCTranslator(Object)>>doesNotUnderstand: #visitMiniASTNode:
+MiniWhileNode(MiniASTNode)>>accept:
+MiniCTranslator>>visitMiniProcedureNode:
+MiniProcedureNode>>accept:
+[ :each | 
+each accept: self.
+self stream cr ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | ...
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mMessageNotUnderstood: MiniCTranslator>>visitMiniASTNode:
+[0mMiniCTranslator(Object)>>doesNotUnderstand: #visitMiniASTNode:
+MiniWhileNode(MiniASTNode)>>accept:
+MiniCTranslator>>visitMiniProcedureNode:
+MiniProcedureNode>>accept:
+[ :each | 
+each accept: self.
+self stream cr ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | ...
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mMessageNotUnderstood: MiniCTranslator>>visitMiniASTNode:
+[0mMiniCTranslator(Object)>>doesNotUnderstand: #visitMiniASTNode:
+MiniWhileNode(MiniASTNode)>>accept:
+MiniCTranslator>>visitMiniProcedureNode:
+MiniProcedureNode>>accept:
+[ :each | 
+each accept: self.
+self stream cr ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | ...
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mMessageNotUnderstood: MiniCTranslator>>visitMiniASTNode:
+[0mMiniCTranslator(Object)>>doesNotUnderstand: #visitMiniASTNode:
+MiniWhileNode(MiniASTNode)>>accept:
+MiniCTranslator>>visitMiniProcedureNode:
+MiniProcedureNode>>accept:
+[ :each | 
+each accept: self.
+self stream cr ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | ...
 OrderedCollection>>do:
 MiniCTranslator>>visitMiniProcedureSectionNode:
 MiniProcedureSectionNode>>accept:
@@ -260,9 +737,11 @@ false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
 self value.
 Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
 [0m[31mHalt
-[0mMiniCTranslator>>visitMiniFunctionNode:
-MiniFunctionNode>>accept:
-[ :each | each accept: self ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | each accept: self ]
+[0mMiniCTranslator>>visitMiniProcedureNode:
+MiniProcedureNode>>accept:
+[ :each | 
+each accept: self.
+self stream cr ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | ...
 OrderedCollection>>do:
 MiniCTranslator>>visitMiniProcedureSectionNode:
 MiniProcedureSectionNode>>accept:
@@ -298,58 +777,523 @@ false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
 [ 
 self value.
 Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
-[0m[31mTestFailure: Assertion failed
-[0mMiniCTranslatorTestCase(TestAsserter)>>assert:
-MiniCTranslatorTestCase>>testVariableDeclarationNode
-MiniCTranslatorTestCase(TestCase)>>performTest
-[ 
-self setUp.
-self performTest ] in MiniCTranslatorTestCase(TestCase)>>runCase in Block: [ ...
-BlockClosure>>ensure:
-MiniCTranslatorTestCase(TestCase)>>runCase
-[ (self class selector: testSelector) runCase ] in MiniCTranslatorTestCase(TestCase)>>debug in Block: [ (self class selector: testSelector) runCase ]
-BlockClosure>>ensure:
-MiniCTranslatorTestCase(TestCase)>>debug
+[0m[31mHalt
+[0mMiniCTranslator>>visitMiniProcedureNode:
+MiniProcedureNode>>accept:
 [ :each | 
-each debug.
-self announceTest: each.
-self changed: each ] in [ 
-self tests
-	do: [ :each | 
-		each debug.
-		self announceTest: each.
-		self changed: each ] ] in TestSuite>>debug in Block: [ :each | ...
+each accept: self.
+self stream cr ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | ...
 OrderedCollection>>do:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
 [ 
-self tests
-	do: [ :each | 
-		each debug.
-		self announceTest: each.
-		self changed: each ] ] in TestSuite>>debug in Block: [ ...
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mMessageNotUnderstood: MiniCTranslator>>visitMiniASTNode:
+[0mMiniCTranslator(Object)>>doesNotUnderstand: #visitMiniASTNode:
+MiniWhileNode(MiniASTNode)>>accept:
+MiniCTranslator>>visitMiniProcedureNode:
+MiniProcedureNode>>accept:
+[ :each | 
+each accept: self.
+self stream cr ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | ...
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniProcedureSectionNode:
+MiniProcedureSectionNode>>accept:
+MiniCTranslator>>visitMiniProgramNode:
+MiniProgramNode>>accept:
+MiniProgramNode>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ 
+textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ 
+textMorph textArea
+	handleEdit: [ 
+		textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+[ 
+[ 
+World doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
+[ 
+self value.
+Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
+[0m[31mMessageNotUnderstood: receiver of "new" is nil
+[0mUndefinedObject(Object)>>doesNotUnderstand: #new
+MiniParser>>reduceActionForRelation2:
+MiniParser(SmaCCParser)>>performReduceMethod:with:
+MiniParser(SmaCCParser)>>reduce:
+MiniParser(SmaCCParser)>>performAction:
+MiniParser(SmaCCParser)>>performParsingLoop
+MiniParser(SmaCCParser)>>parse
+MiniParser class(SmaCCParser class)>>parseStream:startingAt:
+MiniParser class(SmaCCParser class)>>parse:startingAt:
+MiniParser class(SmaCCParser class)>>parse:
+[ self parse: aString ] in MiniParser class(SmaCCParser class)>>parse:onError: in Block: [ self parse: aString ]
+BlockClosure>>on:do:
+MiniParser class(SmaCCParser class)>>parse:onError:
+[ 
+aBlock
+	value:
+		(class
+			parse: self testText
+			onError: [ :aString :position | 
+				self displayError: aString at: position notifying: self testCodeHolder contentsMorph.
+				self testCodeHolder contentsMorph hasUnacceptedEdits: true.
+				self testCodeHolder contentsMorph takeKeyboardFocus.
+				^ false ]) ] in SmaCCDevelopmentUI>>parseAndEvaluate: in Block: [ ...
 BlockClosure>>ensure:
-TestSuite>>debug
-[ :aSuite | aSuite debug ] in TestRunner>>debugSuite: in Block: [ :aSuite | aSuite debug ]
+CursorWithMask(Cursor)>>showWhile:
+SmaCCDevelopmentUI>>parseAndEvaluate:
+SmaCCDevelopmentUI>>parse
+SmaCCDevelopmentUI>>acceptTestCode:notifying:
+SmaCCCodeHolder>>contents:notifying:
+[ 
+^ setTextSelector isNil
+	or: [ 
+		setTextSelector numArgs = 2
+			ifTrue: [ model perform: setTextSelector with: acceptedText with: self ]
+			ifFalse: [ model perform: setTextSelector with: acceptedText ] ] ] in PluggableTextMorph>>acceptTextInModel in Block: [ ...
+BlockClosure>>ensure:
+PluggableTextMorph>>acceptTextInModel
+PluggableTextMorph>>acceptBasic
+PluggableTextMorph>>accept
+TextMorphForEditView>>acceptContents
+[ :morph | morph acceptContents ] in TextMorph class>>buildTextEditorKeymapsOn: in Block: [ :morph | morph acceptContents ]
 BlockClosure>>cull:
 BlockClosure>>cull:cull:
-[ aBlock cull: aTestSuite cull: result ] in TestRunner>>executeSuite:as: in Block: [ aBlock cull: aTestSuite cull: result ]
+BlockClosure>>cull:cull:cull:
+[0m[31mMessageNotUnderstood: receiver of "new" is nil
+[0mUndefinedObject(Object)>>doesNotUnderstand: #new
+MiniParser>>reduceActionForRelation2:
+MiniParser(SmaCCParser)>>performReduceMethod:with:
+MiniParser(SmaCCParser)>>reduce:
+MiniParser(SmaCCParser)>>performAction:
+MiniParser(SmaCCParser)>>performParsingLoop
+MiniParser(SmaCCParser)>>parse
+MiniParser class(SmaCCParser class)>>parseStream:startingAt:
+MiniParser class(SmaCCParser class)>>parse:startingAt:
+MiniParser class(SmaCCParser class)>>parse:
+[ self parse: aString ] in MiniParser class(SmaCCParser class)>>parse:onError: in Block: [ self parse: aString ]
+BlockClosure>>on:do:
+MiniParser class(SmaCCParser class)>>parse:onError:
+[ 
+aBlock
+	value:
+		(class
+			parse: self testText
+			onError: [ :aString :position | 
+				self displayError: aString at: position notifying: self testCodeHolder contentsMorph.
+				self testCodeHolder contentsMorph hasUnacceptedEdits: true.
+				self testCodeHolder contentsMorph takeKeyboardFocus.
+				^ false ]) ] in SmaCCDevelopmentUI>>parseAndEvaluate: in Block: [ ...
 BlockClosure>>ensure:
-TestRunner>>executeSuite:as:
-TestRunner>>debugSuite:
-TestRunner>>debug:
-TestRunner>>failedSelected:
-PluggableListMorph>>changeModelSelection:
-PluggableListMorph>>mouseUpOnSingle:
-PluggableListMorph>>mouseUp:
-PluggableListMorph(Morph)>>handleMouseUp:
+CursorWithMask(Cursor)>>showWhile:
+SmaCCDevelopmentUI>>parseAndEvaluate:
+SmaCCDevelopmentUI>>parseAndInspect
+PluggableButtonMorph>>performAction:
+[ :m | 
+(m containsPoint: evt cursorPoint)
+	ifTrue: [ 
+		m enabled
+			ifTrue: [ m performAction: evt ] ] ] in PluggableButtonMorph>>mouseUp: in Block: [ :m | ...
+Array(SequenceableCollection)>>do:
+PluggableButtonMorph>>mouseUp:
+PluggableButtonMorph(Morph)>>handleMouseUp:
 MouseButtonEvent>>sentTo:
-PluggableListMorph(Morph)>>handleEvent:
-MorphicEventDispatcher>>dispatchDefault:with:
+PluggableButtonMorph(Morph)>>handleEvent:
+PluggableButtonMorph(Morph)>>handleFocusEvent:
+[ 
+ActiveHand := self.
+ActiveEvent := anEvent.
+result := focusHolder handleFocusEvent: (anEvent transformedBy: (focusHolder transformedFrom: self)) ] in HandMorph>>sendFocusEvent:to:clear: in Block: [ ...
+BlockClosure>>on:do:
+WorldMorph(PasteUpMorph)>>becomeActiveDuring:
+HandMorph>>sendFocusEvent:to:clear:
+[0m[31mMessageNotUnderstood: receiver of "new" is nil
+[0mUndefinedObject(Object)>>doesNotUnderstand: #new
+MiniParser>>reduceActionForRelation2:
+MiniParser(SmaCCParser)>>performReduceMethod:with:
+MiniParser(SmaCCParser)>>reduce:
+MiniParser(SmaCCParser)>>performAction:
+MiniParser(SmaCCParser)>>performParsingLoop
+MiniParser(SmaCCParser)>>parse
+MiniParser class(SmaCCParser class)>>parseStream:startingAt:
+MiniParser class(SmaCCParser class)>>parse:startingAt:
+MiniParser class(SmaCCParser class)>>parse:
+[ self parse: aString ] in MiniParser class(SmaCCParser class)>>parse:onError: in Block: [ self parse: aString ]
+BlockClosure>>on:do:
+MiniParser class(SmaCCParser class)>>parse:onError:
+[ 
+aBlock
+	value:
+		(class
+			parse: self testText
+			onError: [ :aString :position | 
+				self displayError: aString at: position notifying: self testCodeHolder contentsMorph.
+				self testCodeHolder contentsMorph hasUnacceptedEdits: true.
+				self testCodeHolder contentsMorph takeKeyboardFocus.
+				^ false ]) ] in SmaCCDevelopmentUI>>parseAndEvaluate: in Block: [ ...
+BlockClosure>>ensure:
+CursorWithMask(Cursor)>>showWhile:
+SmaCCDevelopmentUI>>parseAndEvaluate:
+SmaCCDevelopmentUI>>parse
+SmaCCDevelopmentUI>>acceptTestCode:notifying:
+SmaCCCodeHolder>>contents:notifying:
+[ 
+^ setTextSelector isNil
+	or: [ 
+		setTextSelector numArgs = 2
+			ifTrue: [ model perform: setTextSelector with: acceptedText with: self ]
+			ifFalse: [ model perform: setTextSelector with: acceptedText ] ] ] in PluggableTextMorph>>acceptTextInModel in Block: [ ...
+BlockClosure>>ensure:
+PluggableTextMorph>>acceptTextInModel
+PluggableTextMorph>>acceptBasic
+PluggableTextMorph>>accept
+TextMorphForEditView>>acceptContents
+[ :morph | morph acceptContents ] in TextMorph class>>buildTextEditorKeymapsOn: in Block: [ :morph | morph acceptContents ]
+BlockClosure>>cull:
+BlockClosure>>cull:cull:
+BlockClosure>>cull:cull:cull:
+[0m[31mMessageNotUnderstood: receiver of "new" is nil
+[0mUndefinedObject(Object)>>doesNotUnderstand: #new
+MiniParser>>reduceActionForRelation2:
+MiniParser(SmaCCParser)>>performReduceMethod:with:
+MiniParser(SmaCCParser)>>reduce:
+MiniParser(SmaCCParser)>>performAction:
+MiniParser(SmaCCParser)>>performParsingLoop
+MiniParser(SmaCCParser)>>parse
+MiniParser class(SmaCCParser class)>>parseStream:startingAt:
+MiniParser class(SmaCCParser class)>>parse:startingAt:
+MiniParser class(SmaCCParser class)>>parse:
+[ self parse: aString ] in MiniParser class(SmaCCParser class)>>parse:onError: in Block: [ self parse: aString ]
+BlockClosure>>on:do:
+MiniParser class(SmaCCParser class)>>parse:onError:
+[ 
+aBlock
+	value:
+		(class
+			parse: self testText
+			onError: [ :aString :position | 
+				self displayError: aString at: position notifying: self testCodeHolder contentsMorph.
+				self testCodeHolder contentsMorph hasUnacceptedEdits: true.
+				self testCodeHolder contentsMorph takeKeyboardFocus.
+				^ false ]) ] in SmaCCDevelopmentUI>>parseAndEvaluate: in Block: [ ...
+BlockClosure>>ensure:
+CursorWithMask(Cursor)>>showWhile:
+SmaCCDevelopmentUI>>parseAndEvaluate:
+SmaCCDevelopmentUI>>parse
+SmaCCDevelopmentUI>>acceptTestCode:notifying:
+SmaCCCodeHolder>>contents:notifying:
+[ 
+^ setTextSelector isNil
+	or: [ 
+		setTextSelector numArgs = 2
+			ifTrue: [ model perform: setTextSelector with: acceptedText with: self ]
+			ifFalse: [ model perform: setTextSelector with: acceptedText ] ] ] in PluggableTextMorph>>acceptTextInModel in Block: [ ...
+BlockClosure>>ensure:
+PluggableTextMorph>>acceptTextInModel
+PluggableTextMorph>>acceptBasic
+PluggableTextMorph>>accept
+TextMorphForEditView>>acceptContents
+[ :morph | morph acceptContents ] in TextMorph class>>buildTextEditorKeymapsOn: in Block: [ :morph | morph acceptContents ]
+BlockClosure>>cull:
+BlockClosure>>cull:cull:
+BlockClosure>>cull:cull:cull:
+[0m[31mMessageNotUnderstood: receiver of "new" is nil
+[0mUndefinedObject(Object)>>doesNotUnderstand: #new
+MiniParser>>reduceActionForRelation2:
+MiniParser(SmaCCParser)>>performReduceMethod:with:
+MiniParser(SmaCCParser)>>reduce:
+MiniParser(SmaCCParser)>>performAction:
+MiniParser(SmaCCParser)>>performParsingLoop
+MiniParser(SmaCCParser)>>parse
+MiniParser class(SmaCCParser class)>>parseStream:startingAt:
+MiniParser class(SmaCCParser class)>>parse:startingAt:
+MiniParser class(SmaCCParser class)>>parse:
+[ self parse: aString ] in MiniParser class(SmaCCParser class)>>parse:onError: in Block: [ self parse: aString ]
+BlockClosure>>on:do:
+MiniParser class(SmaCCParser class)>>parse:onError:
+[ 
+aBlock
+	value:
+		(class
+			parse: self testText
+			onError: [ :aString :position | 
+				self displayError: aString at: position notifying: self testCodeHolder contentsMorph.
+				self testCodeHolder contentsMorph hasUnacceptedEdits: true.
+				self testCodeHolder contentsMorph takeKeyboardFocus.
+				^ false ]) ] in SmaCCDevelopmentUI>>parseAndEvaluate: in Block: [ ...
+BlockClosure>>ensure:
+CursorWithMask(Cursor)>>showWhile:
+SmaCCDevelopmentUI>>parseAndEvaluate:
+SmaCCDevelopmentUI>>parse
+SmaCCDevelopmentUI>>acceptTestCode:notifying:
+SmaCCCodeHolder>>contents:notifying:
+[ 
+^ setTextSelector isNil
+	or: [ 
+		setTextSelector numArgs = 2
+			ifTrue: [ model perform: setTextSelector with: acceptedText with: self ]
+			ifFalse: [ model perform: setTextSelector with: acceptedText ] ] ] in PluggableTextMorph>>acceptTextInModel in Block: [ ...
+BlockClosure>>ensure:
+PluggableTextMorph>>acceptTextInModel
+PluggableTextMorph>>acceptBasic
+PluggableTextMorph>>accept
+TextMorphForEditView>>acceptContents
+[ :morph | morph acceptContents ] in TextMorph class>>buildTextEditorKeymapsOn: in Block: [ :morph | morph acceptContents ]
+BlockClosure>>cull:
+BlockClosure>>cull:cull:
+BlockClosure>>cull:cull:cull:
+[0m[31mMessageNotUnderstood: receiver of "new" is nil
+[0mUndefinedObject(Object)>>doesNotUnderstand: #new
+MiniParser>>reduceActionForRelation2:
+MiniParser(SmaCCParser)>>performReduceMethod:with:
+MiniParser(SmaCCParser)>>reduce:
+MiniParser(SmaCCParser)>>performAction:
+MiniParser(SmaCCParser)>>performParsingLoop
+MiniParser(SmaCCParser)>>parse
+MiniParser class(SmaCCParser class)>>parseStream:startingAt:
+MiniParser class(SmaCCParser class)>>parse:startingAt:
+MiniParser class(SmaCCParser class)>>parse:
+[ self parse: aString ] in MiniParser class(SmaCCParser class)>>parse:onError: in Block: [ self parse: aString ]
+BlockClosure>>on:do:
+MiniParser class(SmaCCParser class)>>parse:onError:
+[ 
+aBlock
+	value:
+		(class
+			parse: self testText
+			onError: [ :aString :position | 
+				self displayError: aString at: position notifying: self testCodeHolder contentsMorph.
+				self testCodeHolder contentsMorph hasUnacceptedEdits: true.
+				self testCodeHolder contentsMorph takeKeyboardFocus.
+				^ false ]) ] in SmaCCDevelopmentUI>>parseAndEvaluate: in Block: [ ...
+BlockClosure>>ensure:
+CursorWithMask(Cursor)>>showWhile:
+SmaCCDevelopmentUI>>parseAndEvaluate:
+SmaCCDevelopmentUI>>parseAndInspect
+PluggableButtonMorph>>performAction:
+[ :m | 
+(m containsPoint: evt cursorPoint)
+	ifTrue: [ 
+		m enabled
+			ifTrue: [ m performAction: evt ] ] ] in PluggableButtonMorph>>mouseUp: in Block: [ :m | ...
+Array(SequenceableCollection)>>do:
+PluggableButtonMorph>>mouseUp:
+PluggableButtonMorph(Morph)>>handleMouseUp:
+MouseButtonEvent>>sentTo:
+PluggableButtonMorph(Morph)>>handleEvent:
+PluggableButtonMorph(Morph)>>handleFocusEvent:
+[ 
+ActiveHand := self.
+ActiveEvent := anEvent.
+result := focusHolder handleFocusEvent: (anEvent transformedBy: (focusHolder transformedFrom: self)) ] in HandMorph>>sendFocusEvent:to:clear: in Block: [ ...
+BlockClosure>>on:do:
+WorldMorph(PasteUpMorph)>>becomeActiveDuring:
+HandMorph>>sendFocusEvent:to:clear:
+[0m[31mMessageNotUnderstood: receiver of "new" is nil
+[0mUndefinedObject(Object)>>doesNotUnderstand: #new
+MiniParser>>reduceActionForRelation2:
+MiniParser(SmaCCParser)>>performReduceMethod:with:
+MiniParser(SmaCCParser)>>reduce:
+MiniParser(SmaCCParser)>>performAction:
+MiniParser(SmaCCParser)>>performParsingLoop
+MiniParser(SmaCCParser)>>parse
+MiniParser class(SmaCCParser class)>>parseStream:startingAt:
+MiniParser class(SmaCCParser class)>>parse:startingAt:
+MiniParser class(SmaCCParser class)>>parse:
+[ self parse: aString ] in MiniParser class(SmaCCParser class)>>parse:onError: in Block: [ self parse: aString ]
+BlockClosure>>on:do:
+MiniParser class(SmaCCParser class)>>parse:onError:
+[ 
+aBlock
+	value:
+		(class
+			parse: self testText
+			onError: [ :aString :position | 
+				self displayError: aString at: position notifying: self testCodeHolder contentsMorph.
+				self testCodeHolder contentsMorph hasUnacceptedEdits: true.
+				self testCodeHolder contentsMorph takeKeyboardFocus.
+				^ false ]) ] in SmaCCDevelopmentUI>>parseAndEvaluate: in Block: [ ...
+BlockClosure>>ensure:
+CursorWithMask(Cursor)>>showWhile:
+SmaCCDevelopmentUI>>parseAndEvaluate:
+SmaCCDevelopmentUI>>parseAndInspect
+PluggableButtonMorph>>performAction:
+[ :m | 
+(m containsPoint: evt cursorPoint)
+	ifTrue: [ 
+		m enabled
+			ifTrue: [ m performAction: evt ] ] ] in PluggableButtonMorph>>mouseUp: in Block: [ :m | ...
+Array(SequenceableCollection)>>do:
+PluggableButtonMorph>>mouseUp:
+PluggableButtonMorph(Morph)>>handleMouseUp:
+MouseButtonEvent>>sentTo:
+PluggableButtonMorph(Morph)>>handleEvent:
+PluggableButtonMorph(Morph)>>handleFocusEvent:
+[ 
+ActiveHand := self.
+ActiveEvent := anEvent.
+result := focusHolder handleFocusEvent: (anEvent transformedBy: (focusHolder transformedFrom: self)) ] in HandMorph>>sendFocusEvent:to:clear: in Block: [ ...
+BlockClosure>>on:do:
+WorldMorph(PasteUpMorph)>>becomeActiveDuring:
+HandMorph>>sendFocusEvent:to:clear:
+[0m[31mMessageNotUnderstood: receiver of "new" is nil
+[0mUndefinedObject(Object)>>doesNotUnderstand: #new
+MiniParser>>reduceActionForRelation2:
+MiniParser(SmaCCParser)>>performReduceMethod:with:
+MiniParser(SmaCCParser)>>reduce:
+MiniParser(SmaCCParser)>>performAction:
+MiniParser(SmaCCParser)>>performParsingLoop
+MiniParser(SmaCCParser)>>parse
+MiniParser class(SmaCCParser class)>>parseStream:startingAt:
+MiniParser class(SmaCCParser class)>>parse:startingAt:
+MiniParser class(SmaCCParser class)>>parse:
+[ self parse: aString ] in MiniParser class(SmaCCParser class)>>parse:onError: in Block: [ self parse: aString ]
+BlockClosure>>on:do:
+MiniParser class(SmaCCParser class)>>parse:onError:
+[ 
+aBlock
+	value:
+		(class
+			parse: self testText
+			onError: [ :aString :position | 
+				self displayError: aString at: position notifying: self testCodeHolder contentsMorph.
+				self testCodeHolder contentsMorph hasUnacceptedEdits: true.
+				self testCodeHolder contentsMorph takeKeyboardFocus.
+				^ false ]) ] in SmaCCDevelopmentUI>>parseAndEvaluate: in Block: [ ...
+BlockClosure>>ensure:
+CursorWithMask(Cursor)>>showWhile:
+SmaCCDevelopmentUI>>parseAndEvaluate:
+SmaCCDevelopmentUI>>parseAndInspect
+PluggableButtonMorph>>performAction:
+[ :m | 
+(m containsPoint: evt cursorPoint)
+	ifTrue: [ 
+		m enabled
+			ifTrue: [ m performAction: evt ] ] ] in PluggableButtonMorph>>mouseUp: in Block: [ :m | ...
+Array(SequenceableCollection)>>do:
+PluggableButtonMorph>>mouseUp:
+PluggableButtonMorph(Morph)>>handleMouseUp:
+MouseButtonEvent>>sentTo:
+PluggableButtonMorph(Morph)>>handleEvent:
+PluggableButtonMorph(Morph)>>handleFocusEvent:
+[ 
+ActiveHand := self.
+ActiveEvent := anEvent.
+result := focusHolder handleFocusEvent: (anEvent transformedBy: (focusHolder transformedFrom: self)) ] in HandMorph>>sendFocusEvent:to:clear: in Block: [ ...
+BlockClosure>>on:do:
+WorldMorph(PasteUpMorph)>>becomeActiveDuring:
+HandMorph>>sendFocusEvent:to:clear:
+[0m[31mMessageNotUnderstood: receiver of "new" is nil
+[0mUndefinedObject(Object)>>doesNotUnderstand: #new
+MiniParser>>reduceActionForRelation2:
+MiniParser(SmaCCParser)>>performReduceMethod:with:
+MiniParser(SmaCCParser)>>reduce:
+MiniParser(SmaCCParser)>>performAction:
+MiniParser(SmaCCParser)>>performParsingLoop
+MiniParser(SmaCCParser)>>parse
+MiniParser class(SmaCCParser class)>>parseStream:startingAt:
+MiniParser class(SmaCCParser class)>>parse:startingAt:
+MiniParser class(SmaCCParser class)>>parse:
+[ self parse: aString ] in MiniParser class(SmaCCParser class)>>parse:onError: in Block: [ self parse: aString ]
+BlockClosure>>on:do:
+MiniParser class(SmaCCParser class)>>parse:onError:
+[ 
+aBlock
+	value:
+		(class
+			parse: self testText
+			onError: [ :aString :position | 
+				self displayError: aString at: position notifying: self testCodeHolder contentsMorph.
+				self testCodeHolder contentsMorph hasUnacceptedEdits: true.
+				self testCodeHolder contentsMorph takeKeyboardFocus.
+				^ false ]) ] in SmaCCDevelopmentUI>>parseAndEvaluate: in Block: [ ...
+BlockClosure>>ensure:
+CursorWithMask(Cursor)>>showWhile:
+SmaCCDevelopmentUI>>parseAndEvaluate:
+SmaCCDevelopmentUI>>parseAndInspect
+PluggableButtonMorph>>performAction:
+[ :m | 
+(m containsPoint: evt cursorPoint)
+	ifTrue: [ 
+		m enabled
+			ifTrue: [ m performAction: evt ] ] ] in PluggableButtonMorph>>mouseUp: in Block: [ :m | ...
+Array(SequenceableCollection)>>do:
+PluggableButtonMorph>>mouseUp:
+PluggableButtonMorph(Morph)>>handleMouseUp:
+MouseButtonEvent>>sentTo:
+PluggableButtonMorph(Morph)>>handleEvent:
+PluggableButtonMorph(Morph)>>handleFocusEvent:
+[ 
+ActiveHand := self.
+ActiveEvent := anEvent.
+result := focusHolder handleFocusEvent: (anEvent transformedBy: (focusHolder transformedFrom: self)) ] in HandMorph>>sendFocusEvent:to:clear: in Block: [ ...
+BlockClosure>>on:do:
+WorldMorph(PasteUpMorph)>>becomeActiveDuring:
+HandMorph>>sendFocusEvent:to:clear:
 [0m[31mHalt
-[0mMiniCTranslator>>visitMiniIfElseNode:
+[0mMiniCTranslator>>visitMiniFunctionCallNode:
+MiniFunctionCallNode>>accept:
+MiniCTranslator>>visitMiniAssignmentNode:
+MiniAssignmentNode>>accept:
+MiniCTranslator>>visitMiniIfElseNode:
 MiniIfElseNode>>accept:
+[ :each | each accept: self ] in MiniCTranslator>>visitMiniCompoundStatementNode: in Block: [ :each | each accept: self ]
+OrderedCollection>>do:
+MiniCTranslator>>visitMiniCompoundStatementNode:
+MiniCompoundStatementNode>>accept:
 MiniCTranslator>>visitMiniFunctionNode:
 MiniFunctionNode>>accept:
-[ :each | each accept: self ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | each accept: self ]
+[ :each | 
+each accept: self.
+self stream
+	cr;
+	cr ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | ...
 OrderedCollection>>do:
 MiniCTranslator>>visitMiniProcedureSectionNode:
 MiniProcedureSectionNode>>accept:
@@ -377,53 +1321,4 @@ WorldMorph>>runStepMethods
 WorldState>>doOneCycleNowFor:
 WorldState>>doOneCycleFor:
 WorldMorph>>doOneCycle
-[ 
-[ 
-World doOneCycle.
-Processor yield.
-false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
-[ 
-self value.
-Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
-[0m[31mHalt
-[0mMiniCTranslator>>visitMiniIfElseNode:
-MiniIfElseNode>>accept:
-MiniCTranslator>>visitMiniFunctionNode:
-MiniFunctionNode>>accept:
-[ :each | each accept: self ] in MiniCTranslator>>visitMiniProcedureSectionNode: in Block: [ :each | each accept: self ]
-OrderedCollection>>do:
-MiniCTranslator>>visitMiniProcedureSectionNode:
-MiniProcedureSectionNode>>accept:
-MiniCTranslator>>visitMiniProgramNode:
-MiniProgramNode>>accept:
-MiniProgramNode>>DoIt
-OpalCompiler>>evaluate
-RubSmalltalkEditor>>evaluate:andDo:
-RubSmalltalkEditor>>highlightEvaluateAndDo:
-[ 
-textMorph textArea editor highlightEvaluateAndDo: ann action.
-textMorph shoutStyler style: textMorph text ] in [ 
-textMorph textArea
-	handleEdit: [ 
-		textMorph textArea editor highlightEvaluateAndDo: ann action.
-		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
-RubEditingArea(RubAbstractTextArea)>>handleEdit:
-[ 
-textMorph textArea
-	handleEdit: [ 
-		textMorph textArea editor highlightEvaluateAndDo: ann action.
-		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoPlaygroundRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate: in Block: [ ...
-WorldState>>runStepMethodsIn:
-WorldMorph>>runStepMethods
-WorldState>>doOneCycleNowFor:
-WorldState>>doOneCycleFor:
-WorldMorph>>doOneCycle
-[ 
-[ 
-World doOneCycle.
-Processor yield.
-false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess in Block: [ ...
-[ 
-self value.
-Processor terminateActive ] in BlockClosure>>newProcess in Block: [ ...
 [0m
